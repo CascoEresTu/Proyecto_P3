@@ -1,12 +1,43 @@
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Person.cpp: In function ‘double get_spAttack()’:
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Person.cpp:69:10: error: ‘spAttack’ was not declared in this scope
-   return spAttack;
-          ^
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Person.cpp: In function ‘void set_spDefense(double)’:
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Person.cpp:73:3: error: ‘spDefense’ was not declared in this scope
-   spDefense = spd;
+In file included from /home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:1:0,
+                 from /home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.cpp:1:
+/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Boss.h:19:1: error: expected ‘;’ after class definition
+ }
+ ^
+In file included from /home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.cpp:1:0:
+/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:3:1: error: new types may not be defined in a return type
+ class Bahamut: public Boss{
+ ^
+/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:3:1: note: (perhaps a semicolon is missing after the definition of ‘Bahamut’)
+/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.cpp:3:18: error: return type specification for constructor invalid
+ Bahamut::Bahamut(){
+                  ^
+/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.cpp:7:1: error: prototype for ‘Bahamut::Bahamut(std::__cxx11::string, int)’ does not match any in class ‘Bahamut’
+ Bahamut::Bahamut(string name, int hp): Boss(name,hp){
+ ^
+In file included from /home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.cpp:1:0:
+/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:3:7: error: candidates are: Bahamut::Bahamut(const Bahamut&)
+ class Bahamut: public Boss{
+       ^
+/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:9:3: error:                 Bahamut::Bahamut(std::__cxx11::string, int, std::__cxx11::string)
+   Bahamut(string nombre,int hp, string warcry);
    ^
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Person.cpp: In function ‘double get_spDefense()’:
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Person.cpp:77:10: error: ‘spDefense’ was not declared in this scope
-   return spDefense;
-          ^
+/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.cpp:3:1: error:                 Bahamut::Bahamut()
+ Bahamut::Bahamut(){
+ ^
+In file included from /home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:1:0:
+/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Boss.h:19:1: error: expected ‘;’ after class definition
+ }
+ ^
+/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:13:1: error: expected ‘;’ after class definition
+ }
+ ^
+/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Boss.cpp:1:18: warning: extra tokens at end of #include directive
+ #include "Boss.h";
+                  ^
+In file included from /home/cgcv/Documents/ProgramasC++/Proyecto_P3/Boss.cpp:1:0:
+/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Boss.h:19:1: error: expected ‘;’ after class definition
+ }
+ ^
+/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Boss.h:19:1: error: expected ‘;’ after class definition
+ }
+ ^
