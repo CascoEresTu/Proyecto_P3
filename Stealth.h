@@ -1,15 +1,17 @@
 #pragma once
 #include "Attribute.h"
 
-class Physical: public Attribute
+class Stealth:public Attribute
 {
 private:
-	double damage;
+	double steal;
 	double useMP;
 public:
-	Physical();
+	Stealth();
 	virtual void setAttackP();
+	void stealHP(double);
+	double getSteal();
 	double getUseMP();
-	virtual ~Physical();
+	~Stealth();
 	
 };

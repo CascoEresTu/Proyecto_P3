@@ -6,7 +6,7 @@ Person::Person(){
 
 }
 
-Person::Person(string nombre, double hp, double mp, double att, double def, double spa, double spd){
+Person::Person(string nombre, double hp, double mp, double att, double def, double spa, double spd, double Speed){
    name=nombre;
    HP=hp;
    MP=mp;
@@ -14,6 +14,7 @@ Person::Person(string nombre, double hp, double mp, double att, double def, doub
    defense=def;
    spAttack=spa;
    spDefense=spd;
+   speed = Speed;
 }
 
 Person::~Person(){
@@ -76,3 +77,12 @@ void Person::set_spDefense(double spd){
 double Person::get_spDefense(){
   return spDefense;
 }
+
+void setSpeed(double spd){
+  speed = spd;
+}
+
+double getSpeed(){
+  return speed;
+}
+

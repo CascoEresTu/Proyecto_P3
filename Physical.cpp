@@ -7,7 +7,7 @@ Physical::Physical(){
 }
 void Physical::setAttackP(){
 	attackProbability = rand()%10 + 1;
-	if (attackProbability > 4)
+	if (attackProbability >= 4)
 	{
 		damage = 50;
 	}else{
@@ -15,5 +15,9 @@ void Physical::setAttackP(){
 	}
 }
 Physical::~Physical(){
-
+	damage = 0;
+	useMP = 0;
+}
+double getUseMP(){
+	return useMP;
 }

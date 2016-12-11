@@ -7,6 +7,6 @@ protected:
 public:
 	Attribute();
 	virtual void setAttackP()=0;
-	~Attribute();
+	virtual ~Attribute();
 	
 };

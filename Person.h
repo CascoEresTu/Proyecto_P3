@@ -12,10 +12,11 @@ protected:
   double defense;
   double spAttack;
   double spDefense;
+  double speed;
 
 public:
   Person();
-  Person(string name, double hp, double mp, double att, double def, double spa, double spd);
+  Person(string name, double hp, double mp, double att, double def, double spa, double spd, double Speed);
   virtual ~Person();
   virtual double damage()=0;
 
@@ -39,5 +40,8 @@ public:
 
   void set_spDefense(double);
   double get_spDefense();
+
+  void setSpeed(double);
+  double getSpeed();
 
 };

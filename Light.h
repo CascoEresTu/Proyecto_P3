@@ -1,15 +1,16 @@
 #pragma once
 #include "Attribute.h"
 
-class Physical: public Attribute
+class Light: public Attribute
 {
 private:
-	double damage;
+	double heal;
 	double useMP;
 public:
-	Physical();
+	Light();
 	virtual void setAttackP();
+	double getHeal();
 	double getUseMP();
-	virtual ~Physical();
+	~Light();
 	
 };
