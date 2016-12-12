@@ -1,11 +1,11 @@
-#include "Physical.h"
+#include "Dark.h"
 #include "Attribute.h"
-#include <stdlib.h>
-Physical::Physical(){
+
+Dark::Dark(){
 	damage = 50;
 	useMP = 10;
 }
-void Physical::setAttackP(){
+void Dark::setAttackP(){
 	attackProbability = rand()%10 + 1;
 	if (attackProbability >= 4)
 	{
@@ -14,10 +14,13 @@ void Physical::setAttackP(){
 		damage = 0;
 	}
 }
-Physical::~Physical(){
+double Dark::getDamage(){
+	return damage;
+}
+double Dark::getUseMp(){
+	return useMP;
+}
+Dark::~Dark(){
 	damage = 0;
 	useMP = 0;
-}
-double Physical::getUseMP(){
-	return useMP;
 }

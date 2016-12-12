@@ -78,11 +78,11 @@ double Person::get_spDefense(){
   return spDefense;
 }
 
-void setSpeed(double spd){
+void Person::setSpeed(double spd){
   speed = spd;
 }
 
-double getSpeed(){
+double Person::getSpeed(){
   return speed;
 }
 
