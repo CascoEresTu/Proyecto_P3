@@ -18,6 +18,9 @@ Physical::~Physical(){
 	damage = 0;
 	useMP = 0;
 }
+double Physical::getDamage(){
+	return damage;
+}
 double Physical::getUseMP(){
 	return useMP;
 }

@@ -10,6 +10,7 @@ public:
 	Physical();
 	virtual void setAttackP();
 	double getUseMP();
+	double getDamage();
 	virtual ~Physical();
 	
 };

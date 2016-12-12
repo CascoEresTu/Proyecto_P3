@@ -57,8 +57,7 @@ int main(int argc, char const *argv[]) {
             mvwprintw( w, i+1, 2, "%s", item);
             wattroff( w, A_STANDOUT );
     }
- 
-    delwin( w );
+    delwin(w);
     endwin();
 
   return 0;

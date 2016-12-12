@@ -1,5 +1,6 @@
 #include "Dark.h"
 #include "Attribute.h"
+#include <stdlib.h>
 
 Dark::Dark(){
 	damage = 50;
