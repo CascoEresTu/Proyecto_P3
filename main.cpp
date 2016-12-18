@@ -68,45 +68,62 @@ int main(int argc, char const *argv[]) {
 		}
 
 		if (option == 2){
-			addstr("Ingrese el nombre de su Rogue: \n");
-			refresh();
-			getstr(nombre);
-			addstr("Ingrese el HP de su Rogue: \n");
-			refresh();
-			scanw("%f", &hp);
-			addstr("Ingrese el MP de su Rogue: \n");
-			refresh();
-			scanw("%f", &mp);
-			party.push_back(new Rogue());
-			addstr("Su Rogue ha sido agregado exitosamente\n");
-			refresh();
-		}else{
-			addstr("Ya se encuentran 4 personajes en su equipo. \n");
-			refresh();
+			clear();
+			if (party.size() < 4)
+			{
+				addstr("Ingrese el nombre de su Rogue: \n");
+				refresh();
+				getstr(nombre);
+				addstr("Ingrese el HP de su Rogue: \n");
+				refresh();
+				scanw("%f", &hp);
+				addstr("Ingrese el MP de su Rogue: \n");
+				refresh();
+				scanw("%f", &mp);
+				party.push_back(new Rogue());
+				addstr("Su Rogue ha sido agregado exitosamente\n");
+				refresh();
+			}else{
+				addstr("Ya se encuentran 4 personajes en su equipo. \n");
+				refresh();
+			}
+		}
+		if (option == 3) {
+			clear();
+			if (party.size() < 4)
+			{
+				addstr("Ingrese el nombre de su Melee: \n");
+				refresh();
+				getstr(nombre);
+				addstr("Ingrese el HP de su Melee: \n");
+				refresh();
+				scanw("%f", &hp);
+				addstr("Ingrese el MP de su Melee: \n");
+				refresh();
+				scanw("%f", &mp);
+				party.push_back(new Melee());
+				addstr("Su Melee ha sido agregado exitosamente\n");
+				refresh();
+			}else{
+				addstr("Ya se encuentran 4 personajes en su equipo. \n");
+				refresh();
+			}
 		}
 	}
-
-	if (option == 3) {
-
-
-	}else{
-		addstr("Ocupa almenos 4 escuadrones para poder iniciar la simulación.\n");
-		refresh();
-		addstr("");
+	for (int i = 0; i < party.size(); ++i)
+	{
+		delete party.at(i);
+		party.erase(party.begin()+i);
 	}
-}
-for (int i = 0; i < party.size(); ++i)
-{
-	delete party.at(i);
-	party.erase(party.begin()+i);
-}
-party.clear();
-refresh();
-getch();
-endwin();
+	party.clear();
+	refresh();
+	getch();
+	endwin();
 
-return 0;
+	return 0;
 }
+
+
 
 
 
