@@ -8,103 +8,140 @@
 #include "Boss.h"
 #include "Bahamut.h"
 #include "MightyChocobo.h"
+#include <fstream>
 #include <ncurses.h>
 #include <vector>
 #include <typeinfo>
 
 bool allDead(vector<Person*>);
-
+void guardarPartida(vector<Person*>);
+void cargarPartida(vector<Person*>&);
 using namespace std;
 int main(int argc, char const *argv[]) {
-
-		///////////////////////////////////////
-		double pepe = 0.123;
-		Melee melel;
-		melel.setHP(pepe);
-		melel.setName("dasd");
-
-		BlackMage flan;
-		flan.setHP(500.0);
-		std::cout << flan.getHP() << std::endl;
-
-
-		std::cout << melel.getName() << std::endl;
-		std::cout << melel.getHP() << std::endl;
-		melel.setHP(212.0);
-		std::cout << melel.getHP() << std::endl;
-
-		/////////////////////////////////
-		vector<Person*> party;
-
-
-
-
-		for (size_t i = 0; i < 4; i++) {
-			party.push_back(new Melee("José",1500,300,150,150,0,60,100));
+	vector<Person*> party;
+	initscr();
+	start_color();
+	init_pair(1, COLOR_BLUE, COLOR_BLACK);
+	attron(COLOR_PAIR(1));
+	int option = 0 ;
+	char temp[1];
+	while (option != 6) {
+		addstr("Final Fantasy I - Simulator\n");
+		refresh();
+		addstr("1) Crear Melee\n");
+		refresh();
+		addstr("2) Crear Rogue\n");
+		refresh();
+		addstr("3) Crear White Mage\n");
+		refresh();
+		addstr("4) Crear Black Mage \n");
+		refresh();
+		addstr("5) Simulator \n");
+		refresh();
+		addstr("6) Salir \n");
+		refresh();
+		scanw("%d",&option);
+		clear();
+		char nombre[25];
+		double hp;
+		double mp;
+		if (option == 1) {
+			clear();
+			if (party.size() < 4)
+			{
+				addstr("Ingrese el nombre de su Melee: \n");
+				refresh();
+				getstr(nombre);
+				addstr("Ingrese el HP de su Melee: \n");
+				refresh();
+				scanw("%f", &hp);
+				addstr("Ingrese el MP de su Melee: \n");
+				refresh();
+				scanw("%f", &mp);
+				party.push_back(new Melee());
+				addstr("Su Melee ha sido agregado exitosamente\n");
+				refresh();
+			}else{
+				addstr("Ya se encuentran 4 personajes en su equipo. \n");
+				refresh();
+			}
 		}
 
-		Bahamut* asd = new Bahamut("Bahamut",5000);
-		bool allAlive= true ;
-
-		while(true){
-
-			for (size_t i = 0; i < party.size(); i++) {
-					int opcion = 0;
-					if( !(party.at(i)->getHP() <= 0 )){
-					std::cout << party.at(i)->getHP() << std::endl;
-					std::cout << "Turno de: " << i << std::endl;
-					std::cout << "¿Que hará? " << std::endl;
-					std::cout << "1)Ataque " << std::endl;
-					std::cout << "2)Ataque Especial" << std::endl;
-					std::cout << "3)Pasar turno" << std::endl;
-					cin>>opcion;
-
-						if(opcion == 1){
-							std::cout << i<< " ataca!" <<std::endl;
-							asd->setHP(asd->getHP() - party.at(i)->getAttack());
-								if(asd->getHP() <= 0 ){
-									std::cout << "me muero" << std::endl;
-									break;
-								}
-							}
-							if (opcion == 2){
-								std::cout << "spoof" << std::endl;
-
-								if(asd->getHP() <= 0 ){
-									std::cout << "me muero" << std::endl;
-									break;
-								}
-							}
-
-							if (opcion == 3) {
-								std::cout << "has saltado turno" << std::endl;
-							}
-						}
-					}
-
-					if (asd->getHP() <= 0 ) {
-						std::cout << "HIJOS DE PUTA, ME MUEROOOOO " << std::endl;
-						std::cout << "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << std::endl;
-						break;
-					}
-					asd->attack(party);
-
-					//std::cout <<"hp de Bahamut: "<<asd->getHP()  <<std::endl;
-
-//			allAlive = allDead(party);
+		if (option == 2){
+			addstr("Ingrese el nombre de su Rogue: \n");
+			refresh();
+			getstr(nombre);
+			addstr("Ingrese el HP de su Rogue: \n");
+			refresh();
+			scanw("%f", &hp);
+			addstr("Ingrese el MP de su Rogue: \n");
+			refresh();
+			scanw("%f", &mp);
+			party.push_back(new Rogue());
+			addstr("Su Rogue ha sido agregado exitosamente\n");
+			refresh();
+		}else{
+			addstr("Ya se encuentran 4 personajes en su equipo. \n");
+			refresh();
 		}
+	}
 
-  return 0;
+	if (option == 3) {
+
+
+	}else{
+		addstr("Ocupa almenos 4 escuadrones para poder iniciar la simulación.\n");
+		refresh();
+		addstr("");
+	}
 }
+for (int i = 0; i < party.size(); ++i)
+{
+	delete party.at(i);
+	party.erase(party.begin()+i);
+}
+party.clear();
+refresh();
+getch();
+endwin();
+
+return 0;
+}
+
+
 
 
 bool allDead(vector<Person*> party){
 	if ( (party.at(0)->getHP()<= 0) &&
-			 (party.at(1)->getHP()<= 0) &&
-			 (party.at(2)->getHP()<= 0) &&
-			 (party.at(3)->getHP()<= 0)
+		(party.at(1)->getHP()<= 0) &&
+		(party.at(2)->getHP()<= 0) &&
+		(party.at(3)->getHP()<= 0)
 		) {
 		return false;
-	}
+}
 
+}
+
+void guardarPartida(vector<Person*> party){
+	try{
+		ofstream salida;
+		salida.open("Partida.ff", ios::out|ios::binary);
+		for (int i = 0; i < party.size(); ++i)
+		{
+			salida.write((char *)(party.at(i)), sizeof(Person));
+		}
+		salida.close();
+	}catch(...){
+		cerr<< "Ocurrió un error"<<endl;
+	}
+}
+void cargarPartida(vector<Person*>& party){
+	try{
+		ifstream entrada;
+		entrada.open("Partida.ff", ios::in|ios::binary);
+		while(entrada.read((char *)&party, sizeof(Person)));
+		entrada.close();
+	}catch(...){
+		cerr<< "Ocurrió un error"<<endl;
+	}
 }
