@@ -16,8 +16,6 @@ void Bahamut::attack(vector<Person*> party){
 
   //int teamMembers = party.size();
 
-
-
     if (party.size()==1) {
       std::cout << "hola" << std::endl;
     }
