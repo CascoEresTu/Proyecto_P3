@@ -9,13 +9,17 @@
 #include "Boss.h"
 #include "Bahamut.h"
 #include "MightyChocobo.h"
+#include <fstream>
 #include <ncurses.h>
 #include <vector>
 #include <typeinfo>
 
-bool allDead(vector<Person*>);
 
 using namespace std;
+
+void write(vector<Person*>);
+bool allDead(vector<Person*>);
+
 int main(int argc, char const *argv[]) {
 
 		///////////////////////////////////////
@@ -94,6 +98,8 @@ int main(int argc, char const *argv[]) {
 
   return 0;
 }
+
+
 
 
 bool allDead(vector<Person*> party){

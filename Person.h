@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 class Person{
@@ -44,6 +45,9 @@ public:
   double get_spDefense();
 
   void setSpeed(const double);
+
   double getSpeed();
+
+  virtual string toString()=0;
 
 };
