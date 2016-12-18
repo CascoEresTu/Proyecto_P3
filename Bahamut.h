@@ -7,7 +7,7 @@ private:
   string warcry;
 public:
   Bahamut();
-  Bahamut(string nombre,int hp, string warcry);
+  Bahamut(string nombre,int hp);
   ~Bahamut();
   void attack(vector<Person*>);
 

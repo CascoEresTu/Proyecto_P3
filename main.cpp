@@ -1,4 +1,5 @@
 #include "Person.h"
+#include "Melee.h"
 #include "Attribute.h"
 #include "Boss.h"
 #include "Physical.h"
@@ -6,8 +7,13 @@
 #include "Boss.h"
 #include "Bahamut.h"
 #include <ncurses.h>
+#include <vector>
+
+using namespace std;
 int main(int argc, char const *argv[]) {
-	WINDOW *w;
+	vector<Melee*> melees;
+	Bahamut* bahamut = new Bahamut("Bahamut",5000);
+	/*WINDOW *w;
     char list[5][7] = { "One", "Two", "Three", "Four", "Five" };
     char item[7];
     int ch, i = 0, width = 7;
@@ -58,7 +64,7 @@ int main(int argc, char const *argv[]) {
             wattroff( w, A_STANDOUT );
     }
     delwin(w);
-    endwin();
+    endwin();*/
 
   return 0;
 }

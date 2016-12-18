@@ -4,7 +4,7 @@ Bahamut::Bahamut(){
 
 }
 
-Bahamut::Bahamut(string name, int hp, string warcr): Boss(name,hp){
+Bahamut::Bahamut(string name, int hp): Boss(name,hp){
   this->warcry = "SIMPLES MORTALES, NUNCA ME VENCERÁN";
 }
 
