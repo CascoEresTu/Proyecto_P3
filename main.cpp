@@ -230,18 +230,22 @@ void guardarPartida(vector<Person*> party){
 			if (dynamic_cast<Melee*> (party.at(i))!=NULL){
 					Melee* temp = party.at(i);
 					data<< temp->toString();
+					delete temp;
 			}
 			if (dynamic_cast<Rogue*> (party.at(i))!=NULL){
 					Rogue* temp = party.at(i);
 					data<< temp->toString();
+					delete temp;
 			}
 			if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
 					WhiteMage* temp = party.at(i);
 					data<< temp->toString();
+					delete temp;
 			}
 			if (dynamic_cast<BlackMage*> (party.at(i))!=NULL){
 					BlackMage* temp = party.at(i);
 					data<< temp->toString();
+					delete temp;
 			}
 		}
 		data.close();
