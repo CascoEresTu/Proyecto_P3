@@ -16,6 +16,6 @@ public:
 	Rogue(string , double , double );
 	Rogue();
 	virtual ~Rogue();
-	virtual double damage(Boss&);
+	virtual double damage();
 
 };

@@ -12,7 +12,7 @@ private:
 	string type;
 public:
 	WhiteMage(string, double, double, double, double, double, double, double);
-		WhiteMage(string, double, double);
+	WhiteMage(string, double, double);
 	WhiteMage();
 	virtual ~WhiteMage();
 	virtual double damage();

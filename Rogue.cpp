@@ -32,7 +32,7 @@ Rogue::~Rogue(){
 	delete steal;
 }
 
-double Rogue::damage(Boss& boss){
+double Rogue::damage(){
 	steal->setAttackP();
-	return steal->stealHP(boss.getHP());
+	return steal->stealHP(2000);
 }
