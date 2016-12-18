@@ -6,9 +6,9 @@
 using std::string;
 
 BlackMage::BlackMage(string nombre, double hp, double mp):Person(nombre,hp,mp){
-	this->attack=30;
+	this->attack=10;
 	this->defense=30;
-	this->spAttack=0;
+	this->spAttack=50;
 	this->spDefense=30;
 	this->speed = 50;
 	spell = new Dark();
