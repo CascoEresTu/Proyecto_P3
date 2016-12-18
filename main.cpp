@@ -89,10 +89,10 @@ int main(int argc, char const *argv[]) {
 					getstr(nombre);
 					addstr("Ingrese el HP de su Rogue: \n");
 					refresh();
-					scanw("%f", &hp);
+					scanw("%d", &hp);
 					addstr("Ingrese el MP de su Rogue: \n");
 					refresh();
-					scanw("%f", &mp);
+					scanw("%d", &mp);
 					party.push_back(new Rogue(nombre,hp,mp));
 					addstr("Su Rogue ha sido agregado exitosamente\n");
 					refresh();
@@ -115,10 +115,10 @@ int main(int argc, char const *argv[]) {
 					getstr(nombre);
 					addstr("Ingrese el HP de su White Mage: \n");
 					refresh();
-					scanw("%f", &hp);
+					scanw("%d", &hp);
 					addstr("Ingrese el MP de su White Mage: \n");
 					refresh();
-					scanw("%f", &mp);
+					scanw("%d", &mp);
 					party.push_back(new WhiteMage(nombre,hp,mp));
 					addstr("Su White Mage ha sido agregado exitosamente\n");
 					refresh();
@@ -141,10 +141,10 @@ int main(int argc, char const *argv[]) {
 					getstr(nombre);
 					addstr("Ingrese el HP de su Black Mage: \n");
 					refresh();
-					scanw("%f", &hp);
+					scanw("%d", &hp);
 					addstr("Ingrese el MP de su Black Mage: \n");
 					refresh();
-					scanw("%f", &mp);
+					scanw("%d", &mp);
 					party.push_back(new BlackMage(nombre,hp,mp));
 					addstr("Su Black Mage ha sido agregado exitosamente\n");
 					refresh();
@@ -189,65 +189,14 @@ bool allDead(vector<Person*> party){
 	}
 }
 
-void write(vector<Person*> party){
-	ofstream data;
-	data.open ("Data.txt");
-
-	for (size_t i = 0; i < party.size(); i++) {
-			if (dynamic_cast<Melee*> (party.at(i))!=NULL){
-					Melee* temp = dynamic_cast<Melee*>(party.at(i));
-					data<< temp->toString();
-					delete temp;
-			}
-			if (dynamic_cast<Rogue*> (party.at(i))!=NULL){
-					Rogue* temp = dynamic_cast<Rogue*>(party.at(i));
-					data<< temp->toString();
-					delete temp;
-			}
-			if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
-					WhiteMage* temp = dynamic_cast<WhiteMage*>(party.at(i));
-					data<< temp->toString();
-					delete temp;
-			}
-			if (dynamic_cast<BlackMage*> (party.at(i))!=NULL){
-					BlackMage* temp = dynamic_cast<BlackMage*>(party.at(i));
-					data<< temp->toString();
-					delete temp;}
-				}
-	data.close();
-}
-
-
-
 
 void guardarPartida(vector<Person*> party){
-
 	ofstream data;
 	data.open ("Data.txt");
-
 	for (int i = 0; i < party.size(); i++) {
-			if (dynamic_cast<Melee*> (party.at(i))!=NULL){
-					Melee* temp = dynamic_cast<Melee*>(party.at(i));
-					data<< temp->toString();
-		//			delete temp;
-			}
-			if (dynamic_cast<Rogue*> (party.at(i))!=NULL){
-					Rogue* temp = dynamic_cast<Rogue*>(party.at(i));
-					data<< temp->toString();
-			//		delete temp;
-			}
-			if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
-					WhiteMage* temp = dynamic_cast<WhiteMage*>(party.at(i));
-					data<< temp->toString();
-				///	delete temp;
-			}
-			if (dynamic_cast<BlackMage*> (party.at(i))!=NULL){
-					BlackMage* temp = dynamic_cast<BlackMage*>(party.at(i));
-					data<< temp->toString();
-				// 		delete temp;
-			}
-		}
-		data.close();
+		data<< party.at(i)->toString();
+	}
+	data.close();
 }
 
 void cargarPartida(vector<Person*>& party){
