@@ -158,7 +158,7 @@ int main(int argc, char const *argv[]) {
 			}
 		}
 		if(option == 5){
-			
+				guardarPartida(party);
 		}
 		if(option == 6){
 			clear();
@@ -194,23 +194,26 @@ void write(vector<Person*> party){
 	data.open ("Data.txt");
 
 	for (size_t i = 0; i < party.size(); i++) {
-		if (dynamic_cast<Melee*> (party.at(i))!=NULL){
-				Melee* temp = party.at(i);
-				data<< temp.toString();
-		}
-		if (dynamic_cast<Rogue*> (party.at(i))!=NULL){
-				Rogue* temp = party.at(i);
-				data<< temp.toString();
-		}
-		if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
-				WhiteMage* temp = party.at(i);
-				data<< temp.toString();
-		}
-		if (dynamic_cast<BlackMage*> (party.at(i))!=NULL){
-				BlackMage* temp = party.at(i);
-				data<< temp.toString();
-		}
-	}
+			if (dynamic_cast<Melee*> (party.at(i))!=NULL){
+					Melee* temp = dynamic_cast<Melee*>(party.at(i));
+					data<< temp->toString();
+					delete temp;
+			}
+			if (dynamic_cast<Rogue*> (party.at(i))!=NULL){
+					Rogue* temp = dynamic_cast<Rogue*>(party.at(i));
+					data<< temp->toString();
+					delete temp;
+			}
+			if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
+					WhiteMage* temp = dynamic_cast<WhiteMage*>(party.at(i));
+					data<< temp->toString();
+					delete temp;
+			}
+			if (dynamic_cast<BlackMage*> (party.at(i))!=NULL){
+					BlackMage* temp = dynamic_cast<BlackMage*>(party.at(i));
+					data<< temp->toString();
+					delete temp;}
+				}
 	data.close();
 }
 
@@ -222,36 +225,32 @@ void guardarPartida(vector<Person*> party){
 	ofstream data;
 	data.open ("Data.txt");
 
-	if(!data){
-		std::cout << "El archivo no existe." << std::endl;
-	}
-	else{
-	for (size_t i = 0; i < party.size(); i++) {
+	for (int i = 0; i < party.size(); i++) {
 			if (dynamic_cast<Melee*> (party.at(i))!=NULL){
-					Melee* temp = party.at(i);
+					Melee* temp = dynamic_cast<Melee*>(party.at(i));
 					data<< temp->toString();
+		//			delete temp;
 			}
 			if (dynamic_cast<Rogue*> (party.at(i))!=NULL){
-					Rogue* temp = party.at(i);
+					Rogue* temp = dynamic_cast<Rogue*>(party.at(i));
 					data<< temp->toString();
+			//		delete temp;
 			}
 			if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
-					WhiteMage* temp = party.at(i);
+					WhiteMage* temp = dynamic_cast<WhiteMage*>(party.at(i));
 					data<< temp->toString();
+				///	delete temp;
 			}
 			if (dynamic_cast<BlackMage*> (party.at(i))!=NULL){
-					BlackMage* temp = party.at(i);
+					BlackMage* temp = dynamic_cast<BlackMage*>(party.at(i));
 					data<< temp->toString();
+				// 		delete temp;
 			}
 		}
 		data.close();
-	}
-	data.close();
 }
 
 void cargarPartida(vector<Person*>& party){
-
-
 
 
 }

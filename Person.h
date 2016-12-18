@@ -44,10 +44,9 @@ public:
 
   void set_spDefense(double);
   double get_spDefense();
-
+  
   void setSpeed(double);
   double getSpeed();
 
-  virtual string toString()=0;
 
 };
