@@ -1,5 +1,5 @@
-main: main.o Person.o Melee.o Boss.o Bahamut.o Attribute.o Physical.o Light.o Stealth.o Dark.o Rogue.o WhiteMage.o
-	g++ main.o Person.o Melee.o Boss.o Bahamut.o Attribute.o Physical.o Light.o Stealth.o Dark.o Rogue.o WhiteMage.o -o main -lncurses
+main: main.o Person.o Melee.o Boss.o Bahamut.o Attribute.o Physical.o Light.o Stealth.o Dark.o Rogue.o WhiteMage.o BlackMage.o
+	g++ main.o Person.o Melee.o Boss.o Bahamut.o Attribute.o Physical.o Light.o Stealth.o Dark.o Rogue.o WhiteMage.o BlackMage.o -o main -lncurses
 
 main.o: Attribute.h Person.h Light.h Physical.h main.cpp
 	g++ -c main.cpp
