@@ -8,10 +8,13 @@
 #include "Bahamut.h"
 #include "MightyChocobo.h"
 #include <ncurses.h>
-
+#include <vector>
 bool allDead(vector<Person*>);
 
+using namespace std;
 int main(int argc, char const *argv[]) {
+	//vector<Melee*> melees;
+	//Bahamut* bahamut = new Bahamut("Bahamut",5000);
 	/*WINDOW *w;
     char list[5][7] = { "One", "Two", "Three", "Four", "Five" };
     char item[7];
@@ -75,7 +78,7 @@ int main(int argc, char const *argv[]) {
 			party.push_back(new Melee("José",1500,300,150,150,0,60,100));
 		}
 
-		Bahamut* asd = new Bahamut("Bahamut",5000,"hijos de puta, me pegaron");
+		Bahamut* asd = new Bahamut("Bahamut",5000);
 		bool allAlive= true ;
 
 		while(true){
