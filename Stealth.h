@@ -9,7 +9,7 @@ private:
 public:
 	Stealth();
 	virtual void setAttackP();
-	void stealHP(double);
+	double stealHP(double);
 	double getSteal();
 	double getUseMP();
 	~Stealth();

@@ -1,5 +1,5 @@
-main: main.o Person.o Melee.o Boss.o Bahamut.o Attribute.o Physical.o Light.o Stealth.o Dark.o
-	g++ main.o Person.o Melee.o Boss.o Bahamut.o Attribute.o Physical.o Light.o Stealth.o Dark.o -o main -lncurses
+main: main.o Person.o Melee.o Boss.o Bahamut.o Attribute.o Physical.o Light.o Stealth.o Dark.o Rogue.o
+	g++ main.o Person.o Melee.o Boss.o Bahamut.o Attribute.o Physical.o Light.o Stealth.o Dark.o Rogue.o -o main -lncurses
 
 main.o: Attribute.h Person.h Light.h Physical.h main.cpp
 	g++ -c main.cpp
@@ -9,6 +9,9 @@ Person.o: Person.h Person.cpp
 
 Melee.o: Person.h Melee.h Melee.cpp
 	g++ -c Melee.cpp
+
+Rogue.o: Person.h Rogue.h Rogue.cpp
+	g++ -c Rogue.cpp
 
 Boss.o: Boss.h Boss.cpp
 	g++ -c Boss.cpp
@@ -30,3 +33,6 @@ Stealth.o: Attribute.h Stealth.h Stealth.cpp
 
 Dark.o:	Attribute.h Dark.h Dark.cpp
 	g++ -c Dark.cpp
+
+clean:
+	rm -f *.o main

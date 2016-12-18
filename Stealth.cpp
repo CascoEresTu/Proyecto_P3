@@ -10,13 +10,13 @@ Stealth::Stealth(){
 void Stealth::setAttackP(){
 	attackProbability = rand()%10 + 1;
 }
-void Stealth::stealHP(double life){
+double Stealth::stealHP(double life){
 	if(attackProbability >= 3){
 		steal = (life* 0.2);
 	}else{
 		steal = 5;
 	}
-
+	return steal;
 }
 double Stealth::getSteal(){
 	return steal;
