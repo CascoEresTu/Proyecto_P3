@@ -5,6 +5,16 @@ using namespace std;
 Person::Person(){
 
 }
+Person::Person(string nombre, double hp, double mp){
+  name=nombre;
+  HP= hp;
+  MP= mp;
+  attack=0;
+  defense=0;
+  spAttack=0;
+  spDefense=0;
+  speed = 0;
+}
 
 Person::Person(string nombre, const double hp, const double mp, const double att,const double def,const double spa,const double spd,const double Speed){
    name=nombre;

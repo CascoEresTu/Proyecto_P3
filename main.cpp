@@ -3,6 +3,7 @@
 #include "BlackMage.h"
 #include "Attribute.h"
 #include "Boss.h"
+#include "Rogue.h"
 #include "Physical.h"
 #include "Light.h"
 #include "Boss.h"
@@ -36,11 +37,8 @@ int main(int argc, char const *argv[]) {
 		/////////////////////////////////
 		vector<Person*> party;
 
-
-
-
 		for (size_t i = 0; i < 4; i++) {
-			party.push_back(new Melee("José",1500,300,150,150,0,60,100));
+			party.push_back(new Melee("José",1500,300));
 		}
 
 		Bahamut* asd = new Bahamut("Bahamut",5000);

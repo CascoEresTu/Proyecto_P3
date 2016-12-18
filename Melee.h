@@ -12,6 +12,7 @@ private:
 	string type;
 public:
 	Melee(string, double, double, double, double, double, double, double);
+	Melee(string, double, double);
 	Melee();
 	virtual ~Melee();
 	virtual double damage();

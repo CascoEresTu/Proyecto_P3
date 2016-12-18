@@ -18,6 +18,7 @@ protected:
 public:
   Person();
   Person(string name, const double hp, const double mp, const double att, const double def, const double spa, const double spd, const double Speed);
+  Person(string name, double hp, double mp);
   virtual ~Person();
   virtual double damage()=0;
 
