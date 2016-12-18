@@ -1,11 +1,11 @@
 #pragma once
 #include "Person.h"
 #include "Attribute.h"
-#include "Stealth.h"
+#include "Light.h"
 #include <string>
 using std::string;
 
-class WhiteMage
+class WhiteMage: public Person
 {
 private:
 	Light* heal;
@@ -14,6 +14,6 @@ public:
 	WhiteMage(string, double, double, double, double, double, double, double);
 	WhiteMage();
 	virtual ~WhiteMage();
-	virtual double damage();;
+	virtual double damage();
 	
 };
