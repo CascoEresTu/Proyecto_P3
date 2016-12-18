@@ -3,7 +3,9 @@
 #include "Attribute.h"
 #include "Physical.h"
 #include <string>
+#include <sstream>
 using std::string;
+using std::stringstream;
 
 Melee::Melee(string nombre, double hp, double mp):Person(nombre,hp,mp){
 	this->attack=50;
@@ -29,4 +31,10 @@ Melee::~Melee(){
 double Melee::damage(){
 	special->setAttackP();
 	return (special-> getDamage());
+}
+
+string Melee::toString(){
+	stringstream ss;
+	ss<<"Melee"<<";"<<name<<";"<<HP<<";"<<MP<<";";
+	return ss.str();
 }
