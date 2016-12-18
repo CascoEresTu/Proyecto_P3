@@ -13,8 +13,9 @@ private:
 	string type;
 public:
 	Rogue(string, double, double, double, double, double, double, double);
+	Rogue(string , double , double );
 	Rogue();
 	virtual ~Rogue();
-	virtual double damage(Boss&);
-	
+	virtual double damage();
+
 };

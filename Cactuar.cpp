@@ -1,18 +1,20 @@
-#include "MightyChocobo.h"
+#include "Cactuar.h"
 
-MightyChocobo::MightyChocobo(){
+Cactuar::Cactuar(){
 
 }
 
-MightyChocobo::MightyChocobo(string name, int hp, string warcr): Boss(name,hp){
-  this->warcry = "CHOCOOOOO, CHOCOOOOOOOO";
+
+
+Cactuar::Cactuar(string name, int hp, string warcr): Boss(name,hp){
+  this->warcry = "♫ danza poderoza ♫";
 }
 
-MightyChocobo::~MightyChocobo(){
-  std::cout << "MightyChocobo ded, lol." << std::endl;
+Cactuar::~Cactuar(){
+  std::cout << "Cactuar ded, lol." << std::endl;
 }
 
-void MightyChocobo::attack(vector<Person*> party){
+void Cactuar::attack(vector<Person*> party){
   //int teamMembers = party.size();
   if (party.size >0 ) {
 

@@ -17,32 +17,33 @@ protected:
 
 public:
   Person();
-  Person(string name, const double hp, const double mp, const double att, const double def, const double spa, const double spd, const double Speed);
+  Person(string name, double hp, double mp, double att, double def, double spa, double spd, double Speed);
+  Person(string name, double hp, double mp);
   virtual ~Person();
   virtual double damage()=0;
 
   void setName(string);
   string getName();
 
-  void setHP(const double);
+  void setHP(double);
   double getHP();
 
-  void setMP(const double);
+  void setMP(double);
   double getMP();
 
-  void setAttack(const double);
+  void setAttack(double);
   double getAttack();
 
-  void setDefense(const double);
+  void setDefense(double);
   double getDefense();
 
-  void set_spAttack(const double);
+  void set_spAttack(double);
   double get_spAttack();
 
-  void set_spDefense(const double);
+  void set_spDefense(double);
   double get_spDefense();
 
-  void setSpeed(const double);
+  void setSpeed(double);
   double getSpeed();
 
 };

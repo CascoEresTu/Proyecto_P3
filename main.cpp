@@ -1,8 +1,10 @@
 #include "Person.h"
 #include "Melee.h"
 #include "BlackMage.h"
+#include "WhiteMage.h"
 #include "Attribute.h"
 #include "Boss.h"
+#include "Rogue.h"
 #include "Physical.h"
 #include "Light.h"
 #include "Boss.h"
@@ -49,18 +51,23 @@ int main(int argc, char const *argv[]) {
 			clear();
 			if (party.size() < 4)
 			{
-				addstr("Ingrese el nombre de su Melee: \n");
-				refresh();
-				getstr(nombre);
-				addstr("Ingrese el HP de su Melee: \n");
-				refresh();
-				scanw("%f", &hp);
-				addstr("Ingrese el MP de su Melee: \n");
-				refresh();
-				scanw("%f", &mp);
-				party.push_back(new Melee());
-				addstr("Su Melee ha sido agregado exitosamente\n");
-				refresh();
+				try{
+					addstr("Ingrese el nombre de su Melee: \n");
+					refresh();
+					getstr(nombre);
+					addstr("Ingrese el HP de su Melee: \n");
+					refresh();
+					scanw("%f", &hp);
+					addstr("Ingrese el MP de su Melee: \n");
+					refresh();
+					scanw("%f", &mp);
+					party.push_back(new Melee(nombre,hp,mp));
+					addstr("Su Melee ha sido agregado exitosamente\n");
+					refresh();
+				}catch(...){
+					addstr("Ocurrió un error al agregar el Melee.\n");
+					refresh();
+				}
 			}else{
 				addstr("Ya se encuentran 4 personajes en su equipo. \n");
 				refresh();
@@ -71,18 +78,23 @@ int main(int argc, char const *argv[]) {
 			clear();
 			if (party.size() < 4)
 			{
-				addstr("Ingrese el nombre de su Rogue: \n");
-				refresh();
-				getstr(nombre);
-				addstr("Ingrese el HP de su Rogue: \n");
-				refresh();
-				scanw("%f", &hp);
-				addstr("Ingrese el MP de su Rogue: \n");
-				refresh();
-				scanw("%f", &mp);
-				party.push_back(new Rogue());
-				addstr("Su Rogue ha sido agregado exitosamente\n");
-				refresh();
+				try{	
+					addstr("Ingrese el nombre de su Rogue: \n");
+					refresh();
+					getstr(nombre);
+					addstr("Ingrese el HP de su Rogue: \n");
+					refresh();
+					scanw("%f", &hp);
+					addstr("Ingrese el MP de su Rogue: \n");
+					refresh();
+					scanw("%f", &mp);
+					party.push_back(new Rogue(nombre,hp,mp));
+					addstr("Su Rogue ha sido agregado exitosamente\n");
+					refresh();
+				}catch(...){
+					addstr("Ocurrió un error al agregar el Rogue.\n");
+					refresh();
+				}
 			}else{
 				addstr("Ya se encuentran 4 personajes en su equipo. \n");
 				refresh();
@@ -92,22 +104,61 @@ int main(int argc, char const *argv[]) {
 			clear();
 			if (party.size() < 4)
 			{
-				addstr("Ingrese el nombre de su Melee: \n");
-				refresh();
-				getstr(nombre);
-				addstr("Ingrese el HP de su Melee: \n");
-				refresh();
-				scanw("%f", &hp);
-				addstr("Ingrese el MP de su Melee: \n");
-				refresh();
-				scanw("%f", &mp);
-				party.push_back(new Melee());
-				addstr("Su Melee ha sido agregado exitosamente\n");
-				refresh();
+				try{	
+					addstr("Ingrese el nombre de su White Mage: \n");
+					refresh();
+					getstr(nombre);
+					addstr("Ingrese el HP de su White Mage: \n");
+					refresh();
+					scanw("%f", &hp);
+					addstr("Ingrese el MP de su White Mage: \n");
+					refresh();
+					scanw("%f", &mp);
+					party.push_back(new WhiteMage(nombre,hp,mp));
+					addstr("Su White Mage ha sido agregado exitosamente\n");
+					refresh();
+				}catch(...){
+					addstr("Ocurrió un error al agregar el White Mage.\n");
+					refresh();
+				}
 			}else{
 				addstr("Ya se encuentran 4 personajes en su equipo. \n");
 				refresh();
 			}
+		}
+		if (option == 4) {
+			clear();
+			if (party.size() < 4)
+			{
+				try{	
+					addstr("Ingrese el nombre de su Black Mage: \n");
+					refresh();
+					getstr(nombre);
+					addstr("Ingrese el HP de su Black Mage: \n");
+					refresh();
+					scanw("%f", &hp);
+					addstr("Ingrese el MP de su Black Mage: \n");
+					refresh();
+					scanw("%f", &mp);
+					party.push_back(new BlackMage(nombre,hp,mp));
+					addstr("Su Black Mage ha sido agregado exitosamente\n");
+					refresh();
+				}catch(...){
+					addstr("Ocurrió un error al agregar el Black Mage.\n");
+					refresh();
+				}
+			}else{
+				addstr("Ya se encuentran 4 personajes en su equipo. \n");
+				refresh();
+			}
+		}
+		if(option == 5){
+
+		}
+		if(option == 5){
+			clear();
+			addstr("Salió. \n");
+			refresh();
 		}
 	}
 	for (int i = 0; i < party.size(); ++i)
@@ -116,17 +167,12 @@ int main(int argc, char const *argv[]) {
 		party.erase(party.begin()+i);
 	}
 	party.clear();
+
 	refresh();
 	getch();
 	endwin();
-
 	return 0;
 }
-
-
-
-
-
 
 bool allDead(vector<Person*> party){
 	if ( (party.at(0)->getHP()<= 0) &&
@@ -135,8 +181,7 @@ bool allDead(vector<Person*> party){
 		(party.at(3)->getHP()<= 0)
 		) {
 		return false;
-}
-
+	}
 }
 
 void guardarPartida(vector<Person*> party){

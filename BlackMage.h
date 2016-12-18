@@ -11,6 +11,7 @@ private:
 	Dark* spell;
 	string type;
 public:
+	BlackMage(string, double, double);
 	BlackMage(string, double, double, double, double, double, double, double);
 	BlackMage();
 	virtual ~BlackMage();
