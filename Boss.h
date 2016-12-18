@@ -1,9 +1,10 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include "Person.h"
 #include <vector>
+#include "Person.h"
 #include <stdlib.h>
+#include <typeinfo>
 
 class Boss{
 protected:

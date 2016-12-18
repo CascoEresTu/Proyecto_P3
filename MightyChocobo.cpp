@@ -22,7 +22,7 @@ void MightyChocobo::attack(vector<Person*> party){
   aleatorio2 = rand()%party.size();
 
     if (aleatorio >= 8) {
-        party.at(aleatorio2)->setHP(0);      
+        party.at(aleatorio2)->setHP(0);
         party.erase(party.begin()+ aleatorio2);
     }else{
         for (size_t i = 0; i < party.size(); i++) {

@@ -6,10 +6,11 @@ Person::Person(){
 
 }
 
-Person::Person(string nombre, double hp, double mp, double att, double def, double spa, double spd, double Speed){
+Person::Person(string nombre, const double hp, const double mp, const double att,const double def,const double spa,const double spd,const double Speed){
    name=nombre;
-   HP=hp;
-   MP=mp;
+   HP= hp;
+   this->setHP(hp);
+   MP= mp;
    attack=att;
    defense=def;
    spAttack=spa;
@@ -29,23 +30,23 @@ string Person::getName(){
   return name;
 }
 
-void Person::setHP(double hp){
-  HP= hp;
+void Person::setHP(const double hp){
+  this->HP = hp;
 }
 
 double Person::getHP(){
-  return MP;
+  return this->HP;
 }
 
-void Person::setMP(double mp){
-  MP = mp;
+void Person::setMP(const double mp){
+  this->MP = mp;
 }
 
 double Person::getMP(){
-  return MP;
+  return this->MP;
 }
 
-void Person::setAttack(double att){
+void Person::setAttack(const double att){
   attack = att;
 }
 
@@ -53,7 +54,7 @@ double Person::getAttack(){
   return attack;
 }
 
-void Person::setDefense(double def){
+void Person::setDefense(const double def){
   defense = def;
 }
 
@@ -61,7 +62,7 @@ double Person::getDefense(){
   return defense;
 }
 
-void Person::set_spAttack(double spa){
+void Person::set_spAttack(const double spa){
     spAttack = spa;
 }
 
@@ -69,7 +70,7 @@ double Person::get_spAttack(){
   return spAttack;
 }
 
-void Person::set_spDefense(double spd){
+void Person::set_spDefense(const double spd){
   spDefense = spd;
 }
 
@@ -77,7 +78,7 @@ double Person::get_spDefense(){
   return spDefense;
 }
 
-void Person::setSpeed(double spd){
+void Person::setSpeed(const double spd){
   speed = spd;
 }
 

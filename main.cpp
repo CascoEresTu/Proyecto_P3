@@ -1,5 +1,6 @@
 #include "Person.h"
 #include "Melee.h"
+#include "BlackMage.h"
 #include "Attribute.h"
 #include "Boss.h"
 #include "Physical.h"
@@ -9,70 +10,34 @@
 #include "MightyChocobo.h"
 #include <ncurses.h>
 #include <vector>
+#include <typeinfo>
+
 bool allDead(vector<Person*>);
 
 using namespace std;
 int main(int argc, char const *argv[]) {
-	//vector<Melee*> melees;
-	//Bahamut* bahamut = new Bahamut("Bahamut",5000);
-	/*WINDOW *w;
-    char list[5][7] = { "One", "Two", "Three", "Four", "Five" };
-    char item[7];
-    int ch, i = 0, width = 7;
 
-    initscr(); // initialize Ncurses
-    w = newwin( 10, 12, 1, 1 ); // create a new window
-    box( w, 0, 0 ); // sets default borders for the window
+		///////////////////////////////////////
+		double pepe = 0.123;
+		Melee melel;
+		melel.setHP(pepe);
+		melel.setName("dasd");
 
-// now print all the menu items and highlight the first one
-    for( i=0; i<5; i++ ) {
-        if( i == 0 )
-            wattron( w, A_STANDOUT ); // highlights the first item.
-        else
-            wattroff( w, A_STANDOUT );
-        sprintf(item, "%-7s",  list[i]);
-        mvwprintw( w, i+1, 2, "%s", item );
-    }
+		BlackMage flan;
+		flan.setHP(500.0);
+		std::cout << flan.getHP() << std::endl;
 
-    wrefresh( w ); // update the terminal screen
 
-    i = 0;
-    noecho(); // disable echoing of characters on the screen
-    keypad( w, TRUE ); // enable keyboard input for the window.
-    curs_set( 0 ); // hide the default screen cursor.
+		std::cout << melel.getName() << std::endl;
+		std::cout << melel.getHP() << std::endl;
+		melel.setHP(212.0);
+		std::cout << melel.getHP() << std::endl;
 
-       // get the input
-    while(( ch = wgetch(w)) != 'q'){
-
-                // right pad with spaces to make the items appear with even width.
-            sprintf(item, "%-7s",  list[i]);
-            mvwprintw( w, i+1, 2, "%s", item );
-              // use a variable to increment or decrement the value based on the input.
-            switch( ch ) {
-                case KEY_UP:
-                            i--;
-                            i = ( i<0 ) ? 4 : i;
-                            break;
-                case KEY_DOWN:
-                            i++;
-                            i = ( i>4 ) ? 0 : i;
-                            break;
-								case KEY_ENTER:
-
-												return 1;
-												break;
-            }
-            // now highlight the next item in the list.
-            wattron( w, A_STANDOUT );
-
-            sprintf(item, "%-7s",  list[i]);
-            mvwprintw( w, i+1, 2, "%s", item);
-            wattroff( w, A_STANDOUT );
-    }
-    delwin(w);
-    endwin();*/
-
+		/////////////////////////////////
 		vector<Person*> party;
+
+
+
 
 		for (size_t i = 0; i < 4; i++) {
 			party.push_back(new Melee("José",1500,300,150,150,0,60,100));
@@ -94,11 +59,11 @@ int main(int argc, char const *argv[]) {
 					std::cout << "3)Pasar turno" << std::endl;
 					cin>>opcion;
 
-
 						if(opcion == 1){
 							std::cout << i<< " ataca!" <<std::endl;
 							asd->setHP(asd->getHP() - party.at(i)->getAttack());
 								if(asd->getHP() <= 0 ){
+									std::cout << "me muero" << std::endl;
 									break;
 								}
 							}
@@ -106,6 +71,7 @@ int main(int argc, char const *argv[]) {
 								std::cout << "spoof" << std::endl;
 
 								if(asd->getHP() <= 0 ){
+									std::cout << "me muero" << std::endl;
 									break;
 								}
 							}
