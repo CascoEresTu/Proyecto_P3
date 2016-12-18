@@ -15,10 +15,15 @@
 #include <vector>
 #include <typeinfo>
 
+
 bool allDead(vector<Person*>);
 void guardarPartida(vector<Person*>);
 void cargarPartida(vector<Person*>&);
 using namespace std;
+
+void write(vector<Person*>);
+bool allDead(vector<Person*>);
+
 int main(int argc, char const *argv[]) {
 	vector<Person*> party;
 	initscr();
@@ -78,7 +83,7 @@ int main(int argc, char const *argv[]) {
 			clear();
 			if (party.size() < 4)
 			{
-				try{	
+				try{
 					addstr("Ingrese el nombre de su Rogue: \n");
 					refresh();
 					getstr(nombre);
@@ -104,7 +109,7 @@ int main(int argc, char const *argv[]) {
 			clear();
 			if (party.size() < 4)
 			{
-				try{	
+				try{
 					addstr("Ingrese el nombre de su White Mage: \n");
 					refresh();
 					getstr(nombre);
@@ -130,7 +135,7 @@ int main(int argc, char const *argv[]) {
 			clear();
 			if (party.size() < 4)
 			{
-				try{	
+				try{
 					addstr("Ingrese el nombre de su Black Mage: \n");
 					refresh();
 					getstr(nombre);
@@ -184,26 +189,69 @@ bool allDead(vector<Person*> party){
 	}
 }
 
-void guardarPartida(vector<Person*> party){
-	try{
-		ofstream salida;
-		salida.open("Partida.ff", ios::out|ios::binary);
-		for (int i = 0; i < party.size(); ++i)
-		{
-			salida.write((char *)(party.at(i)), sizeof(Person));
+void write(vector<Person*> party){
+	ofstream data;
+	data.open ("Data.txt");
+
+	for (size_t i = 0; i < party.size(); i++) {
+		if (dynamic_cast<Melee*> (party.at(i))!=NULL){
+				Melee* temp = party.at(i);
+				data<< temp.toString();
 		}
-		salida.close();
-	}catch(...){
-		cerr<< "Ocurrió un error"<<endl;
+		if (dynamic_cast<Rogue*> (party.at(i))!=NULL){
+				Rogue* temp = party.at(i);
+				data<< temp.toString();
+		}
+		if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
+				WhiteMage* temp = party.at(i);
+				data<< temp.toString();
+		}
+		if (dynamic_cast<BlackMage*> (party.at(i))!=NULL){
+				BlackMage* temp = party.at(i);
+				data<< temp.toString();
+		}
 	}
+	data.close();
 }
-void cargarPartida(vector<Person*>& party){
-	try{
-		ifstream entrada;
-		entrada.open("Partida.ff", ios::in|ios::binary);
-		while(entrada.read((char *)&party, sizeof(Person)));
-		entrada.close();
-	}catch(...){
-		cerr<< "Ocurrió un error"<<endl;
+
+
+
+
+void guardarPartida(vector<Person*> party){
+
+	ofstream data;
+	data.open ("Data.txt");
+
+	if(!data){
+		std::cout << "El archivo no existe." << std::endl;
 	}
+	else{
+	for (size_t i = 0; i < party.size(); i++) {
+			if (dynamic_cast<Melee*> (party.at(i))!=NULL){
+					Melee* temp = party.at(i);
+					data<< temp->toString();
+			}
+			if (dynamic_cast<Rogue*> (party.at(i))!=NULL){
+					Rogue* temp = party.at(i);
+					data<< temp->toString();
+			}
+			if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
+					WhiteMage* temp = party.at(i);
+					data<< temp->toString();
+			}
+			if (dynamic_cast<BlackMage*> (party.at(i))!=NULL){
+					BlackMage* temp = party.at(i);
+					data<< temp->toString();
+			}
+		}
+		data.close();
+	}
+	data.close();
+}
+
+void cargarPartida(vector<Person*>& party){
+
+
+
+
 }

@@ -4,8 +4,6 @@ Cactuar::Cactuar(){
 
 }
 
-
-
 Cactuar::Cactuar(string name, int hp, string warcr): Boss(name,hp){
   this->warcry = "♫ danza poderoza ♫";
 }
