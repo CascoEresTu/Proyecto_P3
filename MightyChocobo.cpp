@@ -14,16 +14,15 @@ MightyChocobo::~MightyChocobo(){
 
 void MightyChocobo::attack(vector<Person*> party){
   //int teamMembers = party.size();
-  //OHKO
+  if (party.size >0 ) {
+
   int aleatorio;
   int aleatorio2;
-
   aleatorio = rand()%10 +1;
-
   aleatorio2 = rand()%party.size();
 
     if (aleatorio >= 8) {
-        party.at(aleatorio2)->setHP(0);
+        party.at(aleatorio2)->setHP(0);      
         party.erase(party.begin()+ aleatorio2);
     }else{
         for (size_t i = 0; i < party.size(); i++) {
@@ -32,8 +31,6 @@ void MightyChocobo::attack(vector<Person*> party){
               party.erase(party.begin()+ party.at(i));
             }
         }
-
+      }
     }
-
   }
-}

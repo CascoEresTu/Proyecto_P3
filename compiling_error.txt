@@ -1,43 +1,17 @@
-In file included from /home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:1:0,
-                 from /home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.cpp:1:
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Boss.h:19:1: error: expected ‘;’ after class definition
- }
- ^
-In file included from /home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.cpp:1:0:
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:3:1: error: new types may not be defined in a return type
- class Bahamut: public Boss{
- ^
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:3:1: note: (perhaps a semicolon is missing after the definition of ‘Bahamut’)
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.cpp:3:18: error: return type specification for constructor invalid
- Bahamut::Bahamut(){
-                  ^
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.cpp:7:1: error: prototype for ‘Bahamut::Bahamut(std::__cxx11::string, int)’ does not match any in class ‘Bahamut’
- Bahamut::Bahamut(string name, int hp): Boss(name,hp){
- ^
-In file included from /home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.cpp:1:0:
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:3:7: error: candidates are: Bahamut::Bahamut(const Bahamut&)
- class Bahamut: public Boss{
-       ^
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:9:3: error:                 Bahamut::Bahamut(std::__cxx11::string, int, std::__cxx11::string)
-   Bahamut(string nombre,int hp, string warcry);
-   ^
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.cpp:3:1: error:                 Bahamut::Bahamut()
- Bahamut::Bahamut(){
- ^
-In file included from /home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:1:0:
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Boss.h:19:1: error: expected ‘;’ after class definition
- }
- ^
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Bahamut.h:13:1: error: expected ‘;’ after class definition
- }
- ^
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Boss.cpp:1:18: warning: extra tokens at end of #include directive
- #include "Boss.h";
-                  ^
-In file included from /home/cgcv/Documents/ProgramasC++/Proyecto_P3/Boss.cpp:1:0:
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Boss.h:19:1: error: expected ‘;’ after class definition
- }
- ^
-/home/cgcv/Documents/ProgramasC++/Proyecto_P3/Boss.h:19:1: error: expected ‘;’ after class definition
- }
- ^
+/tmp/ccaytTbp.o: In function `main':
+main.cpp:(.text+0xf2): undefined reference to `Melee::Melee(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, double, double, double, double, double, double, double)'
+main.cpp:(.text+0x1b3): undefined reference to `Bahamut::Bahamut(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)'
+main.cpp:(.text+0x251): undefined reference to `Person::getHP()'
+main.cpp:(.text+0x28f): undefined reference to `Person::getHP()'
+main.cpp:(.text+0x3a7): undefined reference to `Boss::getHP()'
+main.cpp:(.text+0x3d3): undefined reference to `Person::getAttack()'
+main.cpp:(.text+0x3f2): undefined reference to `Boss::setHP(double)'
+main.cpp:(.text+0x401): undefined reference to `Boss::getHP()'
+main.cpp:(.text+0x44a): undefined reference to `Boss::getHP()'
+main.cpp:(.text+0x4a4): undefined reference to `Boss::getHP()'
+/tmp/ccaytTbp.o: In function `allDead(std::vector<Person*, std::allocator<Person*> >)':
+main.cpp:(.text+0x66c): undefined reference to `Person::getHP()'
+main.cpp:(.text+0x69a): undefined reference to `Person::getHP()'
+main.cpp:(.text+0x6c4): undefined reference to `Person::getHP()'
+main.cpp:(.text+0x6ee): undefined reference to `Person::getHP()'
+collect2: error: ld returned 1 exit status

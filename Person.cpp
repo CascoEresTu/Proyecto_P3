@@ -33,7 +33,6 @@ void Person::setHP(double hp){
   HP= hp;
 }
 
-
 double Person::getHP(){
   return MP;
 }
@@ -85,4 +84,3 @@ void Person::setSpeed(double spd){
 double Person::getSpeed(){
   return speed;
 }
-
