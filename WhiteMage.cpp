@@ -2,8 +2,10 @@
 #include "Person.h"
 #include "Attribute.h"
 #include "Light.h"
+#include <sstream>
 #include <string>
 using std::string;
+using std::stringstream;
 
 
 WhiteMage::WhiteMage(string nombre, double hp, double mp):Person(nombre,hp,mp){
@@ -29,4 +31,10 @@ WhiteMage::~WhiteMage(){
 }
 double WhiteMage::damage(){
 	return heal->getHeal();
+}
+
+string WhiteMage::toString(){
+	stringstream ss;
+	ss<<"WhiteMage"<<";"<<name<<";"<<HP<<";"<<MP<<";";
+	return ss.str();
 }

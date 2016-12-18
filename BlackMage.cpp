@@ -3,6 +3,8 @@
 #include "Attribute.h"
 #include "Dark.h"
 #include <string>
+#include <sstream>
+using std::stringstream;
 using std::string;
 
 BlackMage::BlackMage(string nombre, double hp, double mp):Person(nombre,hp,mp){
@@ -33,4 +35,10 @@ BlackMage::~BlackMage(){
 double BlackMage::damage(){
 	spell->setAttackP();
 	return spell->getDamage();
+}
+
+string BlackMage::toString(){
+	stringstream ss;
+	ss<<"BlackMage"<<";"<<name<<";"<<HP<<";"<<MP<<";";
+	return ss.str();
 }

@@ -16,4 +16,5 @@ public:
 	Melee();
 	virtual ~Melee();
 	virtual double damage();
+	virtual string toString();
 };

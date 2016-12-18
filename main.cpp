@@ -158,9 +158,9 @@ int main(int argc, char const *argv[]) {
 			}
 		}
 		if(option == 5){
-
+			
 		}
-		if(option == 5){
+		if(option == 6){
 			clear();
 			addstr("Salió. \n");
 			refresh();

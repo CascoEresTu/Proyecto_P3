@@ -16,5 +16,5 @@ public:
 	WhiteMage();
 	virtual ~WhiteMage();
 	virtual double damage();
-
+	virtual string toString();
 };

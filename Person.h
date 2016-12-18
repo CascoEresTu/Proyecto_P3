@@ -22,6 +22,7 @@ public:
   Person(string name, double hp, double mp);
   virtual ~Person();
   virtual double damage()=0;
+  virtual string toString()=0;
 
   void setName(string);
   string getName();

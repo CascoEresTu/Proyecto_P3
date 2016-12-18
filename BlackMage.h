@@ -16,4 +16,5 @@ public:
 	BlackMage();
 	virtual ~BlackMage();
 	virtual double damage();
+	virtual string toString();
 };

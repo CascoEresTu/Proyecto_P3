@@ -17,5 +17,5 @@ public:
 	Rogue();
 	virtual ~Rogue();
 	virtual double damage();
-
+	virtual string toString();
 };

@@ -3,7 +3,9 @@
 #include "Stealth.h"
 #include "Rogue.h"
 #include "Boss.h"
+#include <sstream>
 #include <string>
+using std::stringstream;
 using std::string;
 
 
@@ -36,3 +38,10 @@ double Rogue::damage(){
 	steal->setAttackP();
 	return steal->stealHP(2000);
 }
+
+string Rogue::toString(){
+	stringstream ss;
+	ss<<"Rogue"<<";"<<name<<";"<<HP<<";"<<MP<<";";
+	return ss.str();
+}
+
