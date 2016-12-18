@@ -50,8 +50,8 @@ int main(int argc, char const *argv[]) {
 		scanw("%d",&option);
 		clear();
 		char nombre[25];
-		double hp;
-		double mp;
+		int hp;
+		int mp;
 		if (option == 1) {
 			clear();
 			if (party.size() < 4)
@@ -62,10 +62,10 @@ int main(int argc, char const *argv[]) {
 					getstr(nombre);
 					addstr("Ingrese el HP de su Melee: \n");
 					refresh();
-					scanw("%f", &hp);
+					scanw("%d", &hp);
 					addstr("Ingrese el MP de su Melee: \n");
 					refresh();
-					scanw("%f", &mp);
+					scanw("%d", &mp);
 					party.push_back(new Melee(nombre,hp,mp));
 					addstr("Su Melee ha sido agregado exitosamente\n");
 					refresh();

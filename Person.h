@@ -45,12 +45,7 @@ public:
   void set_spDefense(double);
   double get_spDefense();
 
-<<<<<<< HEAD
-  void setSpeed(const double);
-
-=======
   void setSpeed(double);
->>>>>>> 2fcce85410dae2a877addd4569f76e3f929f9804
   double getSpeed();
 
   virtual string toString()=0;
