@@ -10,6 +10,7 @@
 #include "Boss.h"
 #include "Bahamut.h"
 #include "MightyChocobo.h"
+#include "Cactuar.h"
 #include <fstream>
 #include <ncurses.h>
 #include <vector>
@@ -33,6 +34,7 @@ int main(int argc, char const *argv[]) {
 	int option = 0 ;
 	char temp[1];
 	while (option != 6) {
+		clear();
 		addstr("Final Fantasy I - Simulator\n");
 		refresh();
 		addstr("1) Crear Melee\n");
@@ -158,7 +160,253 @@ int main(int argc, char const *argv[]) {
 			}
 		}
 		if(option == 5){
-				guardarPartida(party);
+			int opcion = 0;
+			while(opcion != 5){
+				clear();
+				addstr("1) Pelear contra Bahamut\n");
+				refresh();
+				addstr("2) Pelear contra Mighty Chocobo\n");
+				refresh();
+				addstr("3) Pelear contra Cactuar\n");
+				refresh();
+				addstr("4) Cargar Partida Anterior \n");
+				refresh();
+				addstr("5) Salir de la Simulación \n");
+				refresh();
+				addstr("Ingrese una opción:  \n");
+				refresh();
+				scanw("%d", opcion);
+				if(opcion == 1){
+					clear();
+					Bahamut* bahamut = new Bahamut("Bahamut",5000);
+					addstr((bahamut->warCry()).c_str());
+					refresh();
+					int select;
+					double MHP;
+					double RHP;
+					double WHP;
+					double BHP;
+					while(bahamut->getHP()>0 && allDead(party)== false && select!= 4){
+						clear();
+						for (int i = 0; i < party.size(); ++i)
+						{
+							clear();
+							addstr("1) Ataque normal\n");
+							refresh();
+							addstr("2) Ataque Especial\n");
+							refresh();
+							addstr("3) Saltar turno\n");
+							refresh();
+							addstr("4) Guardar Partida\n");
+							refresh();
+							addstr("Ingrese una opción:  \n");
+							refresh();
+							scanw("%d", &select);
+
+							if (select == 1)
+							{
+								bahamut->setHP(bahamut->getHP()-party.at(i)->getAttack());
+							}
+							if (select == 2)
+							{
+								if (party.at(i)->getMP()>=10)
+								{
+									if (dynamic_cast<Melee*> (party.at(i))!=NULL)
+									{
+										bahamut->setHP(bahamut->getHP() - party.at(i)-> damage());
+									}else if(dynamic_cast<Rogue*> (party.at(i))!=NULL){
+										bahamut->setHP(bahamut->getHP() - party.at(i)-> damage());
+										if(party.at(i)->getHP()<2500){
+											party.at(i)->setHP(party.at(i)-> getHP() + party.at(i)->damage());
+										}
+									}else if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
+										for (int j = 0; j < party.size(); ++j)
+										{
+											if(party.at(i)->getHP()<2500){
+												party.at(i)->setHP(party.at(i)-> getHP()+ party.at(i)->damage());
+											}
+										}
+									}else{
+										bahamut->setHP(bahamut->getHP() - party.at(i)-> damage());
+									}
+								}else{
+									clear();
+									addstr("No tiene el suficiente MP para cumplir esta acción.\n");
+									refresh();
+								}
+							}
+							if (select == 3)
+							{
+								party.at(i)->setMP(party.at(i)->getMP()+5);
+							}
+							if(select == 4){
+								guardarPartida(party);
+								clear();
+								addstr("Se guardó la partida.\n");
+								refresh();
+							}
+						}
+						bahamut->attack(party);
+					}
+				}
+				if(opcion == 2){
+					clear();
+					MightyChocobo* chocobo = new MightyChocobo("Mighty Chocobo",5000);
+					addstr((chocobo->warCry()).c_str());
+					refresh();
+					int select;
+					double MHP;
+					double RHP;
+					double WHP;
+					double BHP;
+					while(chocobo->getHP()>0 && allDead(party)== false && select!= 4){
+						clear();
+						for (int i = 0; i < party.size(); ++i)
+						{
+							clear();
+							addstr("1) Ataque normal\n");
+							refresh();
+							addstr("2) Ataque Especial\n");
+							refresh();
+							addstr("3) Saltar turno\n");
+							refresh();
+							addstr("4) Guardar Partida\n");
+							refresh();
+							addstr("Ingrese una opción:  \n");
+							refresh();
+							scanw("%d", &select);
+
+							if (select == 1)
+							{
+								chocobo->setHP(chocobo->getHP()-party.at(i)->getAttack());
+							}
+							if (select == 2)
+							{
+								if (party.at(i)->getMP()>=10)
+								{
+									if (dynamic_cast<Melee*> (party.at(i))!=NULL)
+									{
+										chocobo->setHP(chocobo->getHP() - party.at(i)-> damage());
+									}else if(dynamic_cast<Rogue*> (party.at(i))!=NULL){
+										chocobo->setHP(chocobo->getHP() - party.at(i)-> damage());
+										if(party.at(i)->getHP()<2500){
+											party.at(i)->setHP(party.at(i)-> getHP() + party.at(i)->damage());
+										}
+									}else if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
+										for (int j = 0; j < party.size(); ++j)
+										{
+											if(party.at(i)->getHP()<2500){
+												party.at(i)->setHP(party.at(i)-> getHP()+ party.at(i)->damage());
+											}
+										}
+									}else{
+										chocobo->setHP(chocobo->getHP() - party.at(i)-> damage());
+									}
+								}else{
+									clear();
+									addstr("No tiene el suficiente MP para cumplir esta acción.\n");
+									refresh();
+								}
+							}
+							if (select == 3)
+							{
+								party.at(i)->setMP(party.at(i)->getMP()+5);
+							}
+							if(select == 4){
+								guardarPartida(party);
+								clear();
+								addstr("Se guardó la partida.\n");
+								refresh();
+							}
+						}
+						chocobo->attack(party);
+					}
+				}
+				if (opcion == 3)
+				{
+					clear();
+					Cactuar* cactuar = new Cactuar("Cactuar",5000);
+					addstr((cactuar->warCry()).c_str());
+					refresh();
+					int select;
+					double MHP;
+					double RHP;
+					double WHP;
+					double BHP;
+					while(cactuar->getHP()>0 && allDead(party)== false && select!= 4){
+						clear();
+						for (int i = 0; i < party.size(); ++i)
+						{
+							clear();
+							addstr("1) Ataque normal\n");
+							refresh();
+							addstr("2) Ataque Especial\n");
+							refresh();
+							addstr("3) Saltar turno\n");
+							refresh();
+							addstr("4) Guardar Partida\n");
+							refresh();
+							addstr("Ingrese una opción:  \n");
+							refresh();
+							scanw("%d", &select);
+
+							if (select == 1)
+							{
+								cactuar->setHP(cactuar->getHP()-party.at(i)->getAttack());
+							}
+							if (select == 2)
+							{
+								if (party.at(i)->getMP()>=10)
+								{
+									if (dynamic_cast<Melee*> (party.at(i))!=NULL)
+									{
+										cactuar->setHP(cactuar->getHP() - party.at(i)-> damage());
+									}else if(dynamic_cast<Rogue*> (party.at(i))!=NULL){
+										cactuar->setHP(cactuar->getHP() - party.at(i)-> damage());
+										if(party.at(i)->getHP()<2500){
+											party.at(i)->setHP(party.at(i)-> getHP() + party.at(i)->damage());
+										}
+									}else if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
+										for (int j = 0; j < party.size(); ++j)
+										{
+											if(party.at(i)->getHP()<2500){
+												party.at(i)->setHP(party.at(i)-> getHP()+ party.at(i)->damage());
+											}
+										}
+									}else{
+										cactuar->setHP(cactuar->getHP() - party.at(i)-> damage());
+									}
+								}else{
+									clear();
+									addstr("No tiene el suficiente MP para cumplir esta acción.\n");
+									refresh();
+								}
+							}
+							if (select == 3)
+							{
+								party.at(i)->setMP(party.at(i)->getMP()+5);
+							}
+							if(select == 4){
+								guardarPartida(party);
+								clear();
+								addstr("Se guardó la partida.\n");
+								refresh();
+							}
+						}
+						cactuar->attack(party);
+					}
+				}
+				if (opcion == 4)
+				{
+					clear();	
+				}
+				if (opcion == 5)
+				{
+					clear();
+					addstr("Salió de la simulación.");
+					refresh();
+				}
+			}
 		}
 		if(option == 6){
 			clear();
@@ -185,8 +433,10 @@ bool allDead(vector<Person*> party){
 		(party.at(2)->getHP()<= 0) &&
 		(party.at(3)->getHP()<= 0)
 		) {
-		return false;
-	}
+		return true;
+}else{
+	return false;
+}
 }
 
 

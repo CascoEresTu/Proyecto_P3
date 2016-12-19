@@ -26,3 +26,7 @@ void Bahamut::attack(vector<Person*> party){
     }
 
 }
+
+string Bahamut::warCry(){
+    return warcry;
+}

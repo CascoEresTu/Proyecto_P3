@@ -1,5 +1,5 @@
-main: main.o Person.o Melee.o Boss.o Bahamut.o Attribute.o Physical.o Light.o Stealth.o Dark.o Rogue.o WhiteMage.o BlackMage.o
-	g++ main.o Person.o Melee.o Boss.o Bahamut.o Attribute.o Physical.o Light.o Stealth.o Dark.o Rogue.o WhiteMage.o BlackMage.o -o main -lncurses
+main: main.o Person.o Melee.o Boss.o Bahamut.o Attribute.o Physical.o Light.o Stealth.o Dark.o Rogue.o WhiteMage.o BlackMage.o MightyChocobo.o Cactuar.o
+	g++ main.o Person.o Melee.o Boss.o Bahamut.o Attribute.o Physical.o Light.o Stealth.o Dark.o Rogue.o WhiteMage.o BlackMage.o MightyChocobo.o Cactuar.o -o main -lncurses
 
 main.o: Attribute.h Person.h Light.h Physical.h main.cpp
 	g++ -c main.cpp
@@ -24,6 +24,12 @@ Boss.o: Boss.h Boss.cpp
 
 Bahamut.o: Boss.h Bahamut.h Bahamut.cpp
 	g++ -c Bahamut.cpp
+
+MightyChocobo.o: Boss.h MightyChocobo.h MightyChocobo.cpp
+	g++ -c MightyChocobo.cpp
+
+Cactuar.o: Boss.h Cactuar.h Cactuar.cpp
+	g++ -c Cactuar.cpp
 
 Attribute.o: Attribute.h Attribute.cpp
 	g++ -c Attribute.cpp

@@ -10,4 +10,5 @@ public:
   Bahamut(string nombre,int hp);
   ~Bahamut();
    void attack(vector<Person*>);
+   string warCry();
 };

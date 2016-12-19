@@ -17,4 +17,5 @@ public:
   virtual void attack(vector<Person*>)=0;
   void setHP(double hp);
   double getHP();
+  virtual string warCry()=0;
 };
