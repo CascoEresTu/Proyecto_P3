@@ -12,6 +12,7 @@
 #include "MightyChocobo.h"
 #include "Cactuar.h"
 #include <fstream>
+#include <sstream>
 #include <stdlib.h>
 #include <ncurses.h>
 #include <vector>
@@ -34,8 +35,8 @@ int main(int argc, char const *argv[]) {
 	init_pair(1, COLOR_BLUE, COLOR_BLACK);
 	attron(COLOR_PAIR(1));
 	int option = 0 ;
-	char temp[1];
 	while (option != 6) {
+		// Menú
 		clear();
 		addstr("Final Fantasy I - Simulator\n");
 		refresh();
@@ -57,6 +58,7 @@ int main(int argc, char const *argv[]) {
 		int hp;
 		int mp;
 		if (option == 1) {
+			// Crear Melee
 			clear();
 			if (party.size() < 4)
 			{
@@ -87,6 +89,7 @@ int main(int argc, char const *argv[]) {
 			clear();
 			if (party.size() < 4)
 			{
+				//Crear Rogue
 				try{
 					addstr("Ingrese el nombre de su Rogue: \n");
 					refresh();
@@ -113,6 +116,7 @@ int main(int argc, char const *argv[]) {
 			clear();
 			if (party.size() < 4)
 			{
+				//Crear White Mage
 				try{
 					addstr("Ingrese el nombre de su White Mage: \n");
 					refresh();
@@ -139,6 +143,7 @@ int main(int argc, char const *argv[]) {
 			clear();
 			if (party.size() < 4)
 			{
+				//Crear Black Mage
 				try{
 					addstr("Ingrese el nombre de su Black Mage: \n");
 					refresh();
@@ -162,7 +167,9 @@ int main(int argc, char const *argv[]) {
 			}
 		}
 		if(option == 5){
-			int opcion = 0;
+			//Simulación
+			clear();
+			int opcion;
 			while(opcion != 5){
 				clear();
 				addstr("1) Pelear contra Bahamut\n");
@@ -177,18 +184,16 @@ int main(int argc, char const *argv[]) {
 				refresh();
 				addstr("Ingrese una opción:  \n");
 				refresh();
-				scanw("%d", opcion);
+				scanw("%d", &opcion);
 				if(opcion == 1){
+					//Pelea contra Bahamut
 					clear();
 					Bahamut* bahamut = new Bahamut("Bahamut",5000);
 					addstr((bahamut->warCry()).c_str());
 					refresh();
 					int select;
-					double MHP;
-					double RHP;
-					double WHP;
-					double BHP;
-					while(bahamut->getHP()>0 && allDead(party)== false && select!= 4){
+					bool dead = allDead(party);
+					while(bahamut->getHP()>0 && dead == false && select!= 4){
 						clear();
 						for (int i = 0; i < party.size(); ++i)
 						{
@@ -204,7 +209,7 @@ int main(int argc, char const *argv[]) {
 							addstr("Ingrese una opción:  \n");
 							refresh();
 							scanw("%d", &select);
-
+							stringstream pelea;
 							if (select == 1)
 							{
 								bahamut->setHP(bahamut->getHP()-party.at(i)->getAttack());
@@ -216,20 +221,24 @@ int main(int argc, char const *argv[]) {
 									if (dynamic_cast<Melee*> (party.at(i))!=NULL)
 									{
 										bahamut->setHP(bahamut->getHP() - party.at(i)-> damage());
+										party.at(i)->setMP(party.at(i)->getMP() - 10);
 									}else if(dynamic_cast<Rogue*> (party.at(i))!=NULL){
 										bahamut->setHP(bahamut->getHP() - party.at(i)-> damage());
 										if(party.at(i)->getHP()<2500){
 											party.at(i)->setHP(party.at(i)-> getHP() + party.at(i)->damage());
+											party.at(i)->setMP(party.at(i)->getMP() - 10);
 										}
 									}else if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
 										for (int j = 0; j < party.size(); ++j)
 										{
 											if(party.at(i)->getHP()<2500){
 												party.at(i)->setHP(party.at(i)-> getHP()+ party.at(i)->damage());
+												party.at(i)->setMP(party.at(i)->getMP() - 10);
 											}
 										}
 									}else{
 										bahamut->setHP(bahamut->getHP() - party.at(i)-> damage());
+										party.at(i)->setMP(party.at(i)->getMP() - 10);
 									}
 								}else{
 									clear();
@@ -249,9 +258,11 @@ int main(int argc, char const *argv[]) {
 							}
 						}
 						bahamut->attack(party);
+						dead = allDead(party);
 					}
 				}
 				if(opcion == 2){
+					//Pelea contra chocobo
 					clear();
 					MightyChocobo* chocobo = new MightyChocobo("Mighty Chocobo",5000);
 					addstr((chocobo->warCry()).c_str());
@@ -261,6 +272,7 @@ int main(int argc, char const *argv[]) {
 					double RHP;
 					double WHP;
 					double BHP;
+					bool dead = allDead(party);
 					while(chocobo->getHP()>0 && allDead(party)== false && select!= 4){
 						clear();
 						for (int i = 0; i < party.size(); ++i)
@@ -289,20 +301,24 @@ int main(int argc, char const *argv[]) {
 									if (dynamic_cast<Melee*> (party.at(i))!=NULL)
 									{
 										chocobo->setHP(chocobo->getHP() - party.at(i)-> damage());
+										party.at(i)->setMP(party.at(i)->getMP() - 10);
 									}else if(dynamic_cast<Rogue*> (party.at(i))!=NULL){
 										chocobo->setHP(chocobo->getHP() - party.at(i)-> damage());
 										if(party.at(i)->getHP()<2500){
 											party.at(i)->setHP(party.at(i)-> getHP() + party.at(i)->damage());
+											party.at(i)->setMP(party.at(i)->getMP() - 10);
 										}
 									}else if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
 										for (int j = 0; j < party.size(); ++j)
 										{
 											if(party.at(i)->getHP()<2500){
 												party.at(i)->setHP(party.at(i)-> getHP()+ party.at(i)->damage());
+												party.at(i)->setMP(party.at(i)->getMP() - 10);
 											}
 										}
 									}else{
 										chocobo->setHP(chocobo->getHP() - party.at(i)-> damage());
+										party.at(i)->setMP(party.at(i)->getMP() - 10);
 									}
 								}else{
 									clear();
@@ -322,10 +338,12 @@ int main(int argc, char const *argv[]) {
 							}
 						}
 						chocobo->attack(party);
+						dead = allDead(party);
 					}
 				}
 				if (opcion == 3)
 				{
+					//Pelea contra Cactuar
 					clear();
 					Cactuar* cactuar = new Cactuar("Cactuar",5000);
 					addstr((cactuar->warCry()).c_str());
@@ -335,7 +353,8 @@ int main(int argc, char const *argv[]) {
 					double RHP;
 					double WHP;
 					double BHP;
-					while(cactuar->getHP()>0 && allDead(party)== false && select!= 4){
+					bool dead = allDead(party);
+					while(cactuar->getHP()>0 && dead == false && select!= 4){
 						clear();
 						for (int i = 0; i < party.size(); ++i)
 						{
@@ -363,20 +382,24 @@ int main(int argc, char const *argv[]) {
 									if (dynamic_cast<Melee*> (party.at(i))!=NULL)
 									{
 										cactuar->setHP(cactuar->getHP() - party.at(i)-> damage());
+										party.at(i)->setMP(party.at(i)->getMP() - 10);
 									}else if(dynamic_cast<Rogue*> (party.at(i))!=NULL){
 										cactuar->setHP(cactuar->getHP() - party.at(i)-> damage());
 										if(party.at(i)->getHP()<2500){
 											party.at(i)->setHP(party.at(i)-> getHP() + party.at(i)->damage());
+											party.at(i)->setMP(party.at(i)->getMP() - 10);
 										}
 									}else if (dynamic_cast<WhiteMage*> (party.at(i))!=NULL){
 										for (int j = 0; j < party.size(); ++j)
 										{
 											if(party.at(i)->getHP()<2500){
 												party.at(i)->setHP(party.at(i)-> getHP()+ party.at(i)->damage());
+												party.at(i)->setMP(party.at(i)->getMP() - 10);
 											}
 										}
 									}else{
 										cactuar->setHP(cactuar->getHP() - party.at(i)-> damage());
+										party.at(i)->setMP(party.at(i)->getMP() - 10);
 									}
 								}else{
 									clear();
@@ -396,6 +419,7 @@ int main(int argc, char const *argv[]) {
 							}
 						}
 						cactuar->attack(party);
+						dead = allDead(party);
 					}
 				}
 				if (opcion == 4)
@@ -442,7 +466,7 @@ bool allDead(vector<Person*> party){
 }
 }
 
-
+//Guardar partida
 void guardarPartida(vector<Person*> party){
 	ofstream data;
 	data.open ("Data.txt");
@@ -451,7 +475,7 @@ void guardarPartida(vector<Person*> party){
 	}
 	data.close();
 }
-
+//Cargar Partida
 void cargarPartida(vector<Person*> party){
 	ifstream data;
 	string tipo= "";
@@ -459,35 +483,35 @@ void cargarPartida(vector<Person*> party){
 	string hp= "";
 	string mp= "";
 
-		data.open("Data.txt");
-			if(data.fail()){
+	data.open("Data.txt");
+	if(data.fail()){
 				//cout<<"Falló el archivo."<<endl;
-				addstr("La carga del archivo ha fallado");
-				refresh();
-			}else{
-				while(!data.eof()){
-					getline(data, tipo,';');
-					getline(data, nombre,';');
-					getline(data, hp,';');
-					getline(data, mp,';');
+		addstr("La carga del archivo ha fallado");
+		refresh();
+	}else{
+		while(!data.eof()){
+			getline(data, tipo,';');
+			getline(data, nombre,';');
+			getline(data, hp,';');
+			getline(data, mp,';');
 
-					if (tipo == "Melee") {
-						party.push_back(new Melee(nombre,atoi( hp.c_str() ),atof(mp.c_str()) ) );
-					}
-
-					else if (tipo == "WhiteMage") {
-						party.push_back(new WhiteMage(nombre,atoi( hp.c_str() ),atof(mp.c_str()) ) );
-					}
-
-					else if (tipo == "BlackMage") {
-						party.push_back(new BlackMage(nombre,atoi( hp.c_str() ),atof(mp.c_str()) ) );
-					}
-
-					else if (tipo == "Rogue") {
-						party.push_back(new Rogue(nombre,atoi( hp.c_str() ),atof(mp.c_str()) ) );
-					}
-					tipo = "";
-				}
+			if (tipo == "Melee") {
+				party.push_back(new Melee(nombre,atoi( hp.c_str() ),atof(mp.c_str()) ) );
 			}
-			data.close();
+
+			else if (tipo == "WhiteMage") {
+				party.push_back(new WhiteMage(nombre,atoi( hp.c_str() ),atof(mp.c_str()) ) );
+			}
+
+			else if (tipo == "BlackMage") {
+				party.push_back(new BlackMage(nombre,atoi( hp.c_str() ),atof(mp.c_str()) ) );
+			}
+
+			else if (tipo == "Rogue") {
+				party.push_back(new Rogue(nombre,atoi( hp.c_str() ),atof(mp.c_str()) ) );
+			}
+			tipo = "";
+		}
+	}
+	data.close();
 }
