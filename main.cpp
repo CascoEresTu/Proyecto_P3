@@ -12,6 +12,7 @@
 #include "MightyChocobo.h"
 #include "Cactuar.h"
 #include <fstream>
+#include <stdlib.h>
 #include <ncurses.h>
 #include <vector>
 #include <typeinfo>
@@ -19,7 +20,7 @@
 
 bool allDead(vector<Person*>);
 void guardarPartida(vector<Person*>);
-void cargarPartida(vector<Person*>&);
+void cargarPartida(vector<Person*>);
 using namespace std;
 
 void write(vector<Person*>);
@@ -27,6 +28,7 @@ bool allDead(vector<Person*>);
 
 int main(int argc, char const *argv[]) {
 	vector<Person*> party;
+	//cargarPartida(party);
 	initscr();
 	start_color();
 	init_pair(1, COLOR_BLUE, COLOR_BLACK);
@@ -398,6 +400,7 @@ int main(int argc, char const *argv[]) {
 				}
 				if (opcion == 4)
 				{
+
 					clear();
 				}
 				if (opcion == 5)
@@ -444,43 +447,47 @@ void guardarPartida(vector<Person*> party){
 	ofstream data;
 	data.open ("Data.txt");
 	for (int i = 0; i < party.size(); i++) {
-		data<< party.at(i)->toString();
+		data<< party.at(i)->toString()<<endl;
 	}
 	data.close();
 }
 
-void cargarPartida(vector<Person*>& party){
+void cargarPartida(vector<Person*> party){
 	ifstream data;
-	string line;
+	string tipo= "";
+	string nombre= "";
+	string hp= "";
+	string mp= "";
 
-	while(!data.eof()){
-
-	//getline(admin,line);
-			string tipo;
-			string nombre;
-			string hp;
-			string mp;
-
+		data.open("Data.txt");
 			if(data.fail()){
-					std::cout << "falla" << std::endl;
+				//cout<<"Falló el archivo."<<endl;
+				addstr("La carga del archivo ha fallado");
+				refresh();
 			}else{
-					getline(data,tipo,';');
-					getline(data,nombre,';');
-					getline(data,hp,';');
-					getline(data,mp,';');
+				while(!data.eof()){
+					getline(data, tipo,';');
+					getline(data, nombre,';');
+					getline(data, hp,';');
+					getline(data, mp,';');
+
 					if (tipo == "Melee") {
-						party.push_back(new Melee(nombre,atof( hp.c_str() ),atof(mp.c_str()) ) );
+						party.push_back(new Melee(nombre,atoi( hp.c_str() ),atof(mp.c_str()) ) );
 					}
-					if (tipo == "WhiteMage") {
-						party.push_back(new WhiteMage(nombre,atof( hp.c_str() ),atof(mp.c_str()) ) );
+
+					else if (tipo == "WhiteMage") {
+						party.push_back(new WhiteMage(nombre,atoi( hp.c_str() ),atof(mp.c_str()) ) );
 					}
-					if (tipo == "BlackMage") {
-						party.push_back(new BlackMage(nombre,atof( hp.c_str() ),atof(mp.c_str()) ) );
+
+					else if (tipo == "BlackMage") {
+						party.push_back(new BlackMage(nombre,atoi( hp.c_str() ),atof(mp.c_str()) ) );
 					}
-					if (tipo == "Rogue") {
-						party.push_back(new Rogue(nombre,atof( hp.c_str() ),atof(mp.c_str()) ) );
+
+					else if (tipo == "Rogue") {
+						party.push_back(new Rogue(nombre,atoi( hp.c_str() ),atof(mp.c_str()) ) );
 					}
+					tipo = "";
+				}
 			}
-		}
-	data.close();
+			data.close();
 }

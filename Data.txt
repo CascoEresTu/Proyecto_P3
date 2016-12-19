@@ -1,1 +1,9 @@
-Melee;Melee;100;100;Melee;Melee;200;200;Rogue;Rogue;100;100;
+Melee;Melee;100;100;
+
+Melee;Melee;200;200;
+
+Rogue;Rogue;100;100;
+
+Rogue;Rogue;100;100;
+
+Melee;Melee;200;200;
