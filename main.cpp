@@ -398,7 +398,7 @@ int main(int argc, char const *argv[]) {
 				}
 				if (opcion == 4)
 				{
-					clear();	
+					clear();
 				}
 				if (opcion == 5)
 				{
@@ -450,6 +450,37 @@ void guardarPartida(vector<Person*> party){
 }
 
 void cargarPartida(vector<Person*>& party){
+	ifstream data;
+	string line;
 
+	while(!data.eof()){
 
+	//getline(admin,line);
+			string tipo;
+			string nombre;
+			string hp;
+			string mp;
+
+			if(data.fail()){
+					std::cout << "falla" << std::endl;
+			}else{
+					getline(data,tipo,';');
+					getline(data,nombre,';');
+					getline(data,hp,';');
+					getline(data,mp,';');
+					if (tipo == "Melee") {
+						party.push_back(new Melee(nombre,atof( hp.c_str() ),atof(mp.c_str()) ) );
+					}
+					if (tipo == "WhiteMage") {
+						party.push_back(new WhiteMage(nombre,atof( hp.c_str() ),atof(mp.c_str()) ) );
+					}
+					if (tipo == "BlackMage") {
+						party.push_back(new BlackMage(nombre,atof( hp.c_str() ),atof(mp.c_str()) ) );
+					}
+					if (tipo == "Rogue") {
+						party.push_back(new Rogue(nombre,atof( hp.c_str() ),atof(mp.c_str()) ) );
+					}
+			}
+		}
+	data.close();
 }
